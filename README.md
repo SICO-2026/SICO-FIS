@@ -1,6 +1,6 @@
 # SICO-FIS
 
-## Somos Sico, empresa encargada de supervicion, control, gestion y mantenimiento de maquinaria industrial relacionada al mundo gastronomico.
+## Somos Sico, empresa encargada de supervisión, control, gestión y mantenimiento de maquinaria industrial relacionada ambiente panadero.
 
 ## Equipo de trabajo:
 
@@ -12,7 +12,7 @@
 
 ## Caracteristicas Principales.
 
-+Gestión de equipo: Registro de activos con números de serie únicos y validación de campos técnicos obligatorios (modelo de horno, tipo de amasadora).
++Gestión de equipo: Registro de las maquinarias con sus respectivos números de serie únicos y su validación de campos técnicos obligatorios.
 
 +Consulta de historial: Acceso al historial completo de mantenimientos, reparaciones y repuestos usados en la maqwuinaria.
 
@@ -46,7 +46,7 @@ Elegimos el estilo arquitectónico "Event-Driven" porque nuestras prioridades pr
 
 **¿Que estamos sacrificando?**
 
-Al irnos por este estilo, estamos sacrificando simplicidad en el desarrollo. Configurar toda esta arquitectura al principio es más complejo, y hacer debugging (encontrar errores) con flujos de datos asíncronos es bastante más enredado que en un sistema tradicional. Aceptamos este costo porque para nosotros la Disponibilidad y la Recuperabilidad son intransables; preferimos asumir ese peso técnico extra ahora, antes que arriesgarnos a perder una alerta de emergencia de un horno industrial simplemente porque el servidor principal tuvo una caída de un par de minutos.
+Al irnos por este estilo, estamos sacrificando simplicidad en el desarrollo. Configurar toda esta arquitectura al principio es más complejo, y hacer debugging (encontrar errores) con flujos de datos asíncronos es bastante más enredado que en un sistema tradicional. Aceptamos este costo porque para nosotros la **Disponibilidad y la Recuperabilidad** son intransables; preferimos asumir ese peso técnico extra ahora, antes que arriesgarnos a perder una alerta de emergencia de un horno industrial simplemente porque el servidor principal tuvo una caída de un par de minutos.
 
 **Componentes principales**
 
