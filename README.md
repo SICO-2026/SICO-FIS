@@ -12,7 +12,7 @@
 
 ## Caracteristicas Principales.
 
-Gestión de equipo: Registro de activos con números de serie únicos y validación de campos técnicos obligatorios (modelo de horno, tipo de amasadora).
++Gestión de equipo: Registro de activos con números de serie únicos y validación de campos técnicos obligatorios (modelo de horno, tipo de amasadora).
 
 +Consulta de historial: Acceso al historial completo de mantenimientos, reparaciones y repuestos usados en la maqwuinaria.
 
@@ -29,6 +29,7 @@ Gestión de equipo: Registro de activos con números de serie únicos y validaci
 
 ## Figma
 
+https://glue-habit-23423275.figma.site/
 
 ## Atributos
 
@@ -51,13 +52,13 @@ Al irnos por este estilo, estamos sacrificando simplicidad en el desarrollo. Con
 
 1. Aplicacion web/movil -> Frontend, intterfaz especifica para los tecnicos en terreno y la administtracion.
 2. Bus de eventos -> Gestion de mensajes, ataja y pone en fila todos los datos y alertas en tiempo real.
-3. API Rest -> Backen, logica central de la empresa. Ya sea gestion de ordenes de ttrabajo, inventario y las cotizaciones).
+3. API Rest -> Backen, logica central de la empresa. Ya sea gestion de ordenes de trabajo, inventario y las cotizaciones).
 4. Base de datos -> histoial de equipos y clientes.
 
 
 **Requisito Arquitectónicamente Significativo**
 
-El sistema debe procesar y notificar las alertas críticas de los sensores, por ejemplo, sobrecalentamiento de hornos) en menos de 2 segundos, bajo una carga concurrente de hasta 1,000 eventos por minuto provenientes de múltiples panaderías.
+El sistema debe procesar y notificar las alertas criticas de los sensores, por ejemplo, sobrecalentamiento de hornos, en menos de 2 segundos, bajo una carga concurrente de hasta 1,000 eventos por minuto provenientes de multiples panaderias.
 
 
 
