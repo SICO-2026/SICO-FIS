@@ -20,7 +20,7 @@
 
 +Generador de cotizaciones: Creación de cotizaciones de servicio o repuestos en PDF, o en la web, prellenadas con datos técnicos y precios vigentes.
 
-+Gestión de repuestos: Control detallado del inventario de piezas, incluyendo equivalencias de SKU de distintos proveedores para hornos y amasadoras.
++Gestión de repuestos: Control detallado del inventario de piezas.
 
 +Alertas de mantenimiento: Notificaciones automáticas y programables para mantenimientos preventivos inminentes basadas en horas de operación o fecha calendaria.
 
