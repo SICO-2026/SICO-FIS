@@ -2,7 +2,7 @@
 
 ## Somos Sico, empresa encargada de supervisión, control, gestión y mantenimiento de maquinaria industrial relacionada ambiente panadero.
 
-## Equipo de trabajo:
+### Equipo de trabajo:
 
 **Scrum master**: Ariel Miranda
 
@@ -10,7 +10,7 @@
 
 **Devs**: Rafaella Diaz, David Bombal e Ivan Rodriguez.
 
-## Caracteristicas Principales.
+### Caracteristicas Principales.
 
 +Gestión de equipo: Registro de las maquinarias con sus respectivos números de serie únicos y su validación de campos técnicos obligatorios.
 
@@ -27,15 +27,15 @@
 +Telemetría de control: Monitoreo remoto en tiempo real de temperatura, vibración y consumo energético para detección de anomalías en hornos y/o líneas de producción.
 
 
-## Figma
+### Figma
 
 https://glue-habit-23423275.figma.site/
 
-## Atributos
+### Atributos
 
 <img width="853" height="620" alt="Captura" src="https://github.com/user-attachments/assets/7b68f67a-4db0-4142-84bc-f470a872b001" />
 
-## Estilo de arquitectura
+### Estilo de arquitectura
 
               
 <img width="196" height="122" alt="ssssss" src="https://github.com/user-attachments/assets/18b6f578-6da2-4906-bacb-1f717e9b1bd5" />
