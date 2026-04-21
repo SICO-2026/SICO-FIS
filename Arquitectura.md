@@ -15,7 +15,7 @@ Por el lado del Rendimiento (SICO-01). Se recibe una telemetría constante (vibr
 | ID | TIPO | Descripcion | Porque ocupamos en este estilo |
 |-----------|-----------|-----------|-----------|
 | SICO-01 | Eficiencia/Rendimiento | El sistema debe procesar solicitudes en un tiempo máximo de 2 segundos. | Las tareas pesadas (como el cálculo masivo de telemetría) se emiten como eventos en segundo plano. Esto libera el hilo principal, asegurando que la interfaz de la web reaccione al instante para el usuario.|
-| SICO-03 | Disponibilidad | El sistema debe tener una disponibilidad mínima del 99%. | Si el servicio de notificaciones o inventario sufre una caída, el sistema central sigue funcionando. El bus de eventos retiene los mensajes hasta que el servicio vuelva a estar en línea, garantizando que la operación en terreno nunca se detenga. |
+| SICO-03 | Disponibilidad | El sistema debe tener una disponibilidad mínima del 99%. | Si el servicio de notificaciones sufre una caída, el sistema central sigue funcionando. El bus de eventos retiene los mensajes hasta que el servicio vuelva a estar en línea, garantizando que la operación en terreno nunca se detenga. |
 | SICO-09 | Recuperabilidad | El sistema debe recuperar la información ante fallos sin pérdida de datos críticos. | La aplicación guarda las acciones de los tecnicos como eventos locales. Si un tecnico pierde la señal, al momento que detecta red nuevamente, la app transmite toda la ráfaga de eventos acumulados, asegurando que ningún dato de inspección se pierda. |
 
 
@@ -31,12 +31,35 @@ Al irnos por este estilo, el principal costo que asumimos es trabajar con consis
 
 **Componentes principales**
 
-1. Aplicacion web/movil -> Frontend, intterfaz especifica para los tecnicos en terreno y la administtracion.
-2. Bus de eventos -> Gestion de mensajes, ataja y pone en fila todos los datos y alertas en tiempo real.
-3. API Rest -> Backen, logica central de la empresa. Ya sea gestion de ordenes de trabajo, inventario y las cotizaciones).
-4. Base de datos -> histoial de equipos y clientes.
+3. Descomposición Modular
 
+Módulo Sensores y Telemetría 
+- Responsabilidad: Capturar, procesar y emitir métricas físicas continuas (temperatura, vibraciones) directamente desde los hornos y amasadoras de la línea de producción.
+- Ofrece a otros módulos: Flujos de datos en tiempo real sobre el estado del hardware, emitidos como eventos como ejemplo: telemetria.actualizada, sensor.anomalia_detectada.
+- Depende de: Ninguno
 
-**Requisito Arquitectónicamente Significativo**
+Módulo App de Mantenimiento 
+- Responsabilidad: Proveer la interfaz para que los técnicos registren las inspecciones en terreno, reporten fallas y declaren los repuestos utilizados, gestionando el autoguardado local cuando estos no tengan conexion a internet.
+- Ofrece a otros módulos: Registros de las acciones del técnico en terreno, estos emitidos como eventos al recuperar red.
+- Depende de: Módulo de Gestión de Maquinaria.
 
-El sistema debe procesar y notificar las alertas criticas de los sensores, por ejemplo, sobrecalentamiento de hornos, en menos de 2 segundos, bajo una carga concurrente de hasta 1,000 eventos por minuto provenientes de multiples panaderias.
+Módulo Gestión de Maquinaria e Inventario 
+- Responsabilidad: Administrar la base de datos maestra de los equipos registrados, perfiles técnicos, y mantener el control del stock de repuestos.
+- Ofrece a otros módulos: Validación de autenticidad de hardware, catálogos de precios para repuestos y eventos de inventario.
+- Depende de: Módulo App de Mantenimiento.
+
+Módulo Alertas y Notificaciones (Consumidor)
+- Responsabilidad: Monitorear el flujo de eventos buscando umbrales críticos para despachar avisos urgentes al personal técnico.
+- Ofrece a otros módulos: Un canal centralizado para la entrega de notificaciones (Email/SMS).
+- Depende de: Módulo Sensores y Módulo Gestión.
+
+Módulo Cotizaciones (Consumidor)
+- Responsabilidad: Automatizar la creación de presupuestos formales , generando documentos en PDF con valores precisos.
+- Ofrece a otros módulos: Archivos PDF.
+- Depende de: Módulo App de Mantenimiento y Módulo Gestión de Maquinaria.
+
+Módulo Historial y Analytics (Consumidor)
+- Responsabilidad: Persistir una bitácora de todo lo que ocurre con cada maquinaria para auditorías y generar métricas de rendimiento.
+- Ofrece a otros módulos: Reportes de vida útil de las máquinas.
+- Depende de: Módulo Sensores y Módulo App.
+
