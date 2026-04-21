@@ -34,12 +34,12 @@
 | US-01 |Configurar alertas automáticas de mantenimiento preventivo        | [Issue #1](https://github.com/SICO-2026/SICO-FIS/issues/11) |
 | US-02 |Consultar guía de solución por código de error        | [Issue #2](https://github.com/SICO-2026/SICO-FIS/issues/10) |
 | US-03 |Cotizar y comprar maquinaria industrial        | [Issue #3](https://github.com/SICO-2026/SICO-FIS/issues/9) |
-| US-04 |        | [Issue #4](https://github.com/SICO-2026/SICO-FIS/issues/8) |
-| US-05 |        | [Issue #5](https://github.com/SICO-2026/SICO-FIS/issues/12) |
-| US-06 |        | [Issue #6](https://github.com/SICO-2026/SICO-FIS/issues/13) |
-| US-07 |        | [Issue #7](https://github.com/SICO-2026/SICO-FIS/issues/3) |
-| US-08 |        | [Issue #8](https://github.com/SICO-2026/SICO-FIS/issues/2) |
-| US-09 |        | [Issue #9](https://github.com/SICO-2026/SICO-FIS/issues/1) |
+| US-04 |Consultar historial de mantenciones y reparaciones        | [Issue #4](https://github.com/SICO-2026/SICO-FIS/issues/8) |
+| US-05 |Programar mantenciones futuras de maquinaria       | [Issue #5](https://github.com/SICO-2026/SICO-FIS/issues/12) |
+| US-06 |Visualizar estado general de las máquinas       | [Issue #6](https://github.com/SICO-2026/SICO-FIS/issues/13) |
+| US-07 |Solicitar servicio técnico para maquinaria        | [Issue #7](https://github.com/SICO-2026/SICO-FIS/issues/3) |
+| US-08 |Revisar estado y guía de uso de hornos        | [Issue #8](https://github.com/SICO-2026/SICO-FIS/issues/2) |
+| US-09 |Solicitar servicio técnico urgente        | [Issue #9](https://github.com/SICO-2026/SICO-FIS/issues/1) |
 | US-10 |        | [Issue #10](https://github.com/SICO-2026/SICO-FIS/issues/7) |
 | US-11 |        | [Issue #11](https://github.com/SICO-2026/SICO-FIS/issues/6) |
 | US-12 |        | [Issue #12](https://github.com/SICO-2026/SICO-FIS/issues/5) |
