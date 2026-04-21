@@ -7,7 +7,7 @@
 
  
 
-### US-XX: [nombre] 
+### SIN-01:  
 
 Como [actor], 
 
@@ -39,11 +39,13 @@ Trazar cambios de prioridad que motiven cambios en decisiones de arquitectura.
 
 |--------|--------------------------------|--------------------|-----------------|---------------------------| 
 
-| REF-01 | [descripción]                  | Alta               | Alta            | Sin cambio                | 
+| SICO-02 | El sistema debe contar con autenticación avanzada de usuarios.  | Media | Alta | Mayor informacion de usuarios | 
 
-| REF-03 | [descripción]                  | Media              | Alta            | El cambio lo hace crítico | 
+| SICO-06 | La interfaz debe ser intuitiva.  | Alta  | Media  | No será tan expedito para el usuario | 
 
-| REF-07 | [nuevo REF derivado del cambio]| —                  | Alta            | Nuevo requisito           | 
+| SICO-07 | El sistema debe soportar un aumento moderado de usuarios sin degradar su rendimiento. | Baja                  | Media            | Optimizacion   | 
+
+| SICO-09 | El sistema no debe permitir perdidas criticas | Alta | Media | Eficiencia del sistema |
 
  
 
