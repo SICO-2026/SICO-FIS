@@ -6,11 +6,11 @@
 
 | Integrante | Rol | Items de la rúbrica a cargo |
 |-----------|-----------|-----------|
-| Ariel Miranda    | Scrum Master    | cargo    |
-| Percival Leiva    | Product Owner    | cargo    |
-| Rafaella Diaz | Developer | Cargo |
-| Ivan Rodriguez | Developer | Cargo |
-| David Bombal | Developer | Cargo |
+| Ariel Miranda    | Scrum Master    | Historias de Usuario,     |
+| Percival Leiva    | Product Owner    | Historias de Usuario, Diseño arquitectonico  |
+| Rafaella Diaz | Developer | Historias de Usuario, Mockups, Modelo de dominio |
+| Ivan Rodriguez | Developer | Historias de Usuario, Requisitos ExtraFuncionales |
+| David Bombal | Developer | Historia de Usuario |
 
 ### Caracteristicas Principales.
 
