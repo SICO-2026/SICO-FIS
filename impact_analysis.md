@@ -24,7 +24,7 @@ Criterios de aceptación:
 * Dado que hay un técnico calificado libre, cuando se procesa la solicitud, entonces el sistema le asigna el ticket automáticamente, bloquea ese espacio en su agenda y notifica al cliente el tiempo estimado de llegada.
 * Dado que todos los técnicos están ocupados, cuando el encargado intenta crear la solicitud, entonces el sistema la pone en una cola prioritariay le informa al cliente que está en lista de espera prioritaria.
 
-## SICO-03: historial de estados de maquinas
+## SIN-03: historial de estados de maquinas
 
 Como administrador de la plataforma, quiero que cualquier actualización en el estado o historial de las maquinarias se refleje en tiempo real en todos los módulos, para asegurar que tanto los técnicos como los clientes tomen decisiones basadas en información 100% consistente y actualizada.
 
@@ -45,25 +45,60 @@ Dado que un técnico en terreno cambia una pieza de una maquina, cuando marca la
 
 ## 4. Impacto en entidades del dominio 
 
-[Nuevas entidades, atributos o relaciones afectadas] + Diagrama acutalizado 
+Entidad: Orden de Trabajo
+Atributos:
 
- 
+idOrdenTrabajo (PK)
+codigoCorrelativo (único)
+fechaCreacion
+fechaProgramada
+estado (pendiente, en_proceso, finalizada, cancelada)
+tipoServicio (preventivo, correctivo, urgente)
+clienteId (FK)
+tecnicoId (FK)
+maquinaId (FK)
+descripcionProblema
+prioridad
+
+Entidad: Asignacion Tecnico
+Atributos:
+
+idAsignacion (PK)
+fechaAsignacion
+estadoAsignacion (asignado, en_espera, rechazado)
+tiempoEstimadoLlegada
+ubicacionTecnico
+especialidadRequerida
+prioridad
+
+Entidad: Historial Maquina
+Atributos:
+
+idHistorial (PK)
+maquinaId (FK)
+fechaEvento
+tipoEvento (mantencion, falla, cambio_pieza)
+descripcion
+estadoMaquina
+tecnicoId (FK)
+ordenTrabajoId (FK)
+repuestoUtilizadoId (FK, opcional)
+
+
 
 ## 5. Impacto en mockups 
 
-[Mockups afectados y descripción de cambios necesarios] 
+Las nuevas historias de usuario afectan de manera significativa el proyecto, ya que amplían su alcance más allá de la simple visualización y registro de solicitudes. En primer lugar, la generación automática de una orden de trabajo impacta directamente el módulo de solicitud de servicio y el tablero, porque el sistema ya no solo debe recibir la solicitud, sino también crear un ticket con datos obligatorios, código correlativo y vínculo con el historial de la maquinaria. En segundo lugar, la asignación automática de técnico modifica el flujo de atención, debido a que el sistema debe considerar disponibilidad, especialidad y prioridad para asignar o dejar en espera una solicitud de emergencia. Además, la actualización en tiempo real afecta de forma transversal a todos los módulos, ya que cualquier cambio en el estado de una maquinaria, servicio o historial debe reflejarse inmediatamente en la plataforma. Finalmente, el descuento automático de repuestos incorpora un nuevo alcance funciona.
 
  
 
 ## 6. Impacto en arquitectura 
 
-Para cumplir con transacciones atómicas y consistencia fuerte, tendrían que abandonar EDA y adoptar uno de estos dos estilos:
+Hemos decidido modificar nuestra propuesta original y migrar hacia una Arquitectura de Microservicios, comunicados mediante API REST/gRPC, y respaldados por un modelo de datos con consistencia fuerte.
 
-Arquitectura Monolítica (o de Capas tradicional): Todos los módulos (App, Inventario, Cotizaciones) viven en el mismo servidor y se conectan a una única y masiva base de datos relacional (SQL). Esto garantiza que, si se reserva un técnico, la base de datos se bloquea y la transacción es 100% atómica.
+Esta decisión responde directamente a la introducción de dos nuevos requerimientos críticos para el negocio que un modelo asíncrono no puede satisfacer sin comprometer la integridad de los datos:
 
-Microservicios Síncronos (con REST o gRPC): Separar los módulos, pero en lugar de usar un Bus de Eventos asíncrono, los módulos se hacen llamadas directas mediante APIs (como cuando una app de delivery verifica tu tarjeta de crédito).
-
-El costo mortal del cambio: Si cambian a un modelo síncrono para cumplir estos nuevos requisitos, pierden automáticamente el autoguardado local y el soporte offline (SICO-09). Si el técnico de SICO no tiene señal de internet en la panadería, la aplicación web simplemente se colgará y no le dejará hacer nada, porque no podrá comunicarse con la base de datos central para garantizar la “consistencia fuerte”.
+Garantía de Transacciones Atómicas (cambio funcional): La asignación de técnicos urgentes ahora requiere una confirmación inmediata. La conexión se mantiene abierta hasta que se verifica la disponibilidad del técnico y se crea la orden de trabajo simultáneamente. Si un paso falla, se revierte toda la operación al instante , garantizando que nunca se genere un ticket sin un técnico real asignado.
  
 
 ### 6.1 ¿Cambia el estilo arquitectónico? 
@@ -71,8 +106,6 @@ El costo mortal del cambio: Si cambian a un modelo síncrono para cumplir estos 
 SI: El cambio afectaria principalmente a la seguridad de los usuarios y del mismo sistema, ya que, se veria en conflicto mayor informacion de los ya mencionados. A la vez con eso, el sistema debera sacrificar ciertos requisitos principalmente enfocado a la optimizacion y eficiencia del mismo.
 
 
-
- 
 
 ### 6.2 Relación REF (repriorizado) con decisiones de arquitectura 
 
@@ -96,19 +129,19 @@ SI: El cambio afectaria principalmente a la seguridad de los usuarios y del mism
 
 |--------------------|--------------------|------------------------------------|--------------------------------| 
 
-| [Módulo existente] | modificado         | [descripción actualizada]          | [interfaces actualizadas]      | 
+| Cotizaciones | modificado         | Se transforma en Órdenes de Trabajo y Cotizaciones, porque ya no solo genera PDFs: ahora también formaliza tickets, asocia costos, repuestos, cliente, técnico y servicio realizado.         | Órdenes de trabajo, cotizaciones y documentos formales      | 
 
-| [Módulo nuevo]     | nuevo              | [responsabilidad]                  | [qué expone]                   | 
-
-| [Módulo eliminado] | eliminado          | —                                  | —                              | 
+| Órdenes de Trabajo     | nuevo              | Centraliza la recepción de solicitudes, confirmación de servicios, asignación de técnicos y seguimiento del estado de cada intervención.                  | Tickets, estados de servicio, asignación técnica y trazabilidad                   | 
 
  
 
 Fundamentación de cambios modulares: 
+Cotizaciones (modificado):
+Este módulo deja de ser solo generador de documentos y pasa a tener un rol operativo, ya que ahora no solo cotiza, sino que también permite formalizar servicios reales. Esto se debe a que las cotizaciones pueden transformarse en Órdenes de Trabajo, integrando datos como cliente, técnico, repuestos y servicio, y aportando trazabilidad completa.
 
-[Justificar por qué se agregan, modifican o eliminan módulos en función del 
+Órdenes de Trabajo (nuevo):
+Se incorpora como el núcleo del sistema para gestionar cada intervención. Permite centralizar la asignación de técnicos, el seguimiento del servicio y el estado de las solicitudes. Su creación responde a la necesidad de automatización, atención en tiempo real y consistencia en la información.
 
-cambio de requerimientos y/o la repriorización de REF.] 
 
  
 
@@ -136,16 +169,16 @@ cambio de requerimientos y/o la repriorización de REF.]
 
 |----------|-----------------|------------|---------| 
 
-| US-XX    | REF-XX          | [módulo]   | [ref]   | 
+| SIN-01    | SICO-01          | Orden de trabajo   |  Solicitar servicio  |
+
+| SIN-02    | SICO-03          | Orden de trabajo   | Solicitar servicio   | 
+
+| SIN-03    | SICO-08          | Cotizaciones   | Tablero   | 
 
  
 
 ## 10. Justificación global y trade-offs 
 
-[Por qué la solución propuesta es coherente con el sistema. 
-
-Qué trade-offs se asumieron, especialmente ante cambios de prioridad en REF. 
-
-Qué se gana y qué se sacrifica con las decisiones tomadas.]
+Aceptamos conscientemente que nuestra aplicación perderá la capacidad de “autoguardado offline”. Si un técnico se encuentra en una zona de la planta sin conexión a internet, no podrá generar órdenes ni actualizar historiales hasta recuperar la señal, ya que el sistema ahora requiere comunicación directa y en tiempo real con el servidor central para validar cada paso.
 
 
