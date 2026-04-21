@@ -34,7 +34,7 @@ Ver en: [ReqExtraFuncionales.md](./ReqExtraFuncionales.md)
 
 ## Figma
 
-https://glue-habit-23423275.figma.site/
+Ver en: https://glue-habit-23423275.figma.site/
 
 ## Modelo del Dominio
 
