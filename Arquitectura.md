@@ -11,6 +11,12 @@ Elegimos el estilo arquitectónico "Event-Driven" porque nuestras prioridades pr
 
 Al irnos por este estilo, estamos sacrificando simplicidad en el desarrollo. Configurar toda esta arquitectura al principio es más complejo, y hacer debugging (encontrar errores) con flujos de datos asíncronos es bastante más enredado que en un sistema tradicional. Aceptamos este costo porque para nosotros la **Disponibilidad y la Recuperabilidad** son intransables; preferimos asumir ese peso técnico extra ahora, antes que arriesgarnos a perder una alerta de emergencia de un horno industrial simplemente porque el servidor principal tuvo una caída de un par de minutos.
 
+**Diagrama de arquitectura**
+
+<img width="1440" height="937" alt="Untitled Diagram(2)" src="https://github.com/user-attachments/assets/c7e40f9b-21f8-46cc-95a1-44e0f85a0a6b" />
+
+
+
 **Componentes principales**
 
 1. Aplicacion web/movil -> Frontend, intterfaz especifica para los tecnicos en terreno y la administtracion.
