@@ -12,12 +12,6 @@
 | Ivan Rodriguez | Developer | Cargo |
 | David Bombal | Developer | Cargo |
 
-**Scrum master**: Ariel Miranda
-
-**Product owner**: Percival Leiva
-
-**Devs**: Rafaella Diaz, David Bombal e Ivan Rodriguez.
-
 ### Caracteristicas Principales.
 
 +Gestión de equipo: Registro de las maquinarias con sus respectivos números de serie únicos y su validación de campos técnicos obligatorios.
