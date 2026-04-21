@@ -7,10 +7,9 @@
 
 Este estilo porque nuestras prioridades críticas son la Recuperabilidad [SICO-09], la Disponibilidad [SICO-03] y el Rendimiento [SICO-01]
 
-
 Al tratarse de un sistema para ambientes industriales y trabajo en terreno, necesitamos que la plataforma siga operando incluso si falla la red (alta disponibilidad, SICO-03). Usando este estilo, la aplicación puede realizar un "autoguardado" y registrar la información de las inspecciones. Al momento de cuando vuelva la conexión, esos eventos se sincronizan sin perder ningún dato crítico de la maquinaria (alta recuperabilidad SICO-09).
 
-Por el lado del Rendimiento (SICO-01). Se recibe una telemetría constante (vibración, temperatura de los hornos). Al manejar la telemetría como mensajes asíncronos en segundo plano, la interfaz principal queda liberada, asegurando que cualquier acción del usuario en la plataforma web se procese en menos de los 2 segundos exigidos.
+Por el lado del Rendimiento (SICO-01). Se recibe una telemetría constante ya sea de las vibraciones como tambien la temperatura de los hornos. Al manejar la telemetría como mensajes asíncronos, la interfaz principal queda liberada, asegurando que cualquier acción del usuario en la plataforma web se procese en menos de los 2 segundos exigidos.
 
 | ID | TIPO | Descripcion | Porque ocupamos en este estilo |
 |-----------|-----------|-----------|-----------|
@@ -63,3 +62,14 @@ Módulo Historial y Analytics (Consumidor)
 - Ofrece a otros módulos: Reportes de vida útil de las máquinas.
 - Depende de: Módulo Sensores y Módulo App.
 
+
+
+## ASR
+
+1: Trabajo en terreno -> Recuperabilidad.
+
+El sistema debe almacenar localmente el 100% de los datos de inspección sin pérdida de información bajo condiciones de desconexión total a la red prolongada durante el trabajo en terreno.
+
+2: Telemetria -> Rendimiento.
+
+El sistema debe procesar alertas y despachar notificaciones de seguridad en menos de 2 segundos bajo un flujo de datos continuo proveniente de los sensores de la maquinaria industrial.
