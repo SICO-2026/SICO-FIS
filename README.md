@@ -28,6 +28,9 @@
 
 +Telemetría de control: Monitoreo remoto en tiempo real de temperatura, vibración y consumo energético para detección de anomalías en hornos y/o líneas de producción.
 
+## Requisitos ExtraFuncionales
+Ver en: [ReqExtrafuncionales.md](./ReqExtrafuncionales.md)
+
 
 ## Figma
 
@@ -38,3 +41,8 @@ https://glue-habit-23423275.figma.site/
 El sistema se gestiona principalmente por sus entidades y atributos:
 
 <img width="853" height="620" alt="Captura" src="https://github.com/user-attachments/assets/7b68f67a-4db0-4142-84bc-f470a872b001" />
+
+## Estilo Arquitectónico
+
+Ver en: [Arquitectura.md](./Arquitectura.md)
+
