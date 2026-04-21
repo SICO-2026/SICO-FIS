@@ -36,7 +36,7 @@ Criterios de aceptación:
 
 | SICO-06 | La interfaz debe ser intuitiva.  | Alta  | Media  | No será tan expedito para el usuario | 
 
-| SICO-07 | El sistema debe soportar un aumento moderado de usuarios sin degradar su rendimiento. | Baja                  | Media            | Optimizacion   | 
+| SICO-07 | El sistema debe soportar un aumento exponencial de usuarios sin degradar su rendimiento. | Baja | Media | Optimizacion   | 
 
 | SICO-09 | El sistema no debe permitir perdidas criticas | Alta | Media | Eficiencia del sistema |
 
