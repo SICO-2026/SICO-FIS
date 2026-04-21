@@ -6,11 +6,11 @@
 
 | Integrante | Rol | Items de la rúbrica a cargo |
 |-----------|-----------|-----------|
-| Ariel Miranda    | Scrum Master    | cargo    |
-| Percival Leiva    | Product Owner    | cargo    |
-| Rafaella Diaz | Developer | Cargo |
-| Ivan Rodriguez | Developer | Cargo |
-| David Bombal | Developer | Cargo |
+| Ariel Miranda    | Scrum Master    | Historias de Usuario,     |
+| Percival Leiva    | Product Owner    | Historias de Usuario, Diseño arquitectonico  |
+| Rafaella Diaz | Developer | Historias de Usuario, Mockups, Modelo de dominio |
+| Ivan Rodriguez | Developer | Historias de Usuario, Requisitos ExtraFuncionales |
+| David Bombal | Developer | Historia de Usuario |
 
 ### Caracteristicas Principales.
 
@@ -77,10 +77,17 @@ Al irnos por este estilo, estamos sacrificando simplicidad en el desarrollo. Con
 El sistema debe procesar y notificar las alertas criticas de los sensores, por ejemplo, sobrecalentamiento de hornos, en menos de 2 segundos, bajo una carga concurrente de hasta 1,000 eventos por minuto provenientes de multiples panaderias.
 
 
+## Figma
 
+Ver en: https://glue-habit-23423275.figma.site/
 
+## Modelo del Dominio
 
+El sistema se gestiona principalmente por sus entidades y atributos:
 
+<img width="853" height="620" alt="Captura" src="https://github.com/user-attachments/assets/7b68f67a-4db0-4142-84bc-f470a872b001" />
 
+## Estilo Arquitectónico
 
+Ver en: [Arquitectura.md](./Arquitectura.md)
 
