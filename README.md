@@ -4,6 +4,14 @@
 
 ### Equipo de trabajo:
 
+| Integrante | Rol | Items de la rúbrica a cargo |
+|-----------|-----------|-----------|
+| Ariel Miranda    | Scrum Master    | cargo    |
+| Percival Leiva    | Product Owner    | cargo    |
+| Rafaella Diaz | Developer | Cargo |
+| Ivan Rodriguez | Developer | Cargo |
+| David Bombal | Developer | Cargo |
+
 **Scrum master**: Ariel Miranda
 
 **Product owner**: Percival Leiva
