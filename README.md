@@ -29,7 +29,7 @@
 +Telemetría de control: Monitoreo remoto en tiempo real de temperatura, vibración y consumo energético para detección de anomalías en hornos y/o líneas de producción.
 
 ## Requisitos ExtraFuncionales
-Ver en: [ReqExtrafuncionales.md](./ReqExtrafuncionales.md)
+Ver en: [ReqExtraFuncionales.md](./ReqExtraFuncionales.md)
 
 
 ## Figma
