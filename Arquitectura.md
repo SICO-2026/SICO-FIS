@@ -1,4 +1,4 @@
-## Estilo de arquitectura
+## Estilo Arquitectónico
 
               
 <img width="196" height="122" alt="ssssss" src="https://github.com/user-attachments/assets/18b6f578-6da2-4906-bacb-1f717e9b1bd5" />
