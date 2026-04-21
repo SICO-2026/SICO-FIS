@@ -1,4 +1,4 @@
-##Requisitos ExtraFuncionales
+## Requisitos ExtraFuncionales
 
 Clasificación según ISO 25010 y tipo de restricción.
 
