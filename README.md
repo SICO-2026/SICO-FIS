@@ -33,7 +33,9 @@
 
 https://glue-habit-23423275.figma.site/
 
-## Atributos
+## Modelo del Dominio
+
+El sistema se gestiona principalmente por sus entidades y atributos:
 
 <img width="853" height="620" alt="Captura" src="https://github.com/user-attachments/assets/7b68f67a-4db0-4142-84bc-f470a872b001" />
 
