@@ -1,3 +1,5 @@
+<img width="213" height="350" alt="foto" src="https://github.com/user-attachments/assets/6ab8ac8b-5a3c-4d69-80e9-88aabd640c0b" />
+
 ## 1. Cambio solicitado 
 El cambio va enfocado a la respuesta del sistema en un aumento de solicitudes de tecnicos y aumento de usuarios en el mismo a la hora de solicitar historial de mantenciones y visitas de tecnicos.
  
