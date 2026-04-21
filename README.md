@@ -43,10 +43,6 @@
 | US-10 |        | [Issue #10](https://github.com/SICO-2026/SICO-FIS/issues/7) |
 | US-11 |        | [Issue #11](https://github.com/SICO-2026/SICO-FIS/issues/6) |
 | US-12 |        | [Issue #12](https://github.com/SICO-2026/SICO-FIS/issues/5) |
-## Figma
-
-https://glue-habit-23423275.figma.site/
-
 
 ## Figma
 
