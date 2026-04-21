@@ -9,31 +9,24 @@
 
 ### SIN-01:  
 
-Como [actor], 
+Como coordinador de mantenimiento, quiero que se genere automáticamente un ticket (orden de trabajo) detallado cada vez que se confirma un servicio técnico, para estandarizar y automatizar el registro de la intervención, evitar el papeleo manual y no perder trazabilidad. 
 
-quiero [acción], 
+Criterios de aceptación:
+* Dado que un cliente requiere un servicio de mantenimiento preventivo, cuando el coordinador presiona “Confirmar Servicio” en la plataforma, entonces el sistema genera automáticamente una Orden de Trabajo con un código correlativo único.
+* Dado que la Orden de Trabajo se genera de forma automática, cuando el coordinador abre el documento, entonces este debe contener prellenados obligatoriamente: el nombre del técnico, el número de serie del equipo a intervenir, la fecha programada y el cliente. 
+* Dado que se requiere mantener un historial ordenado, cuando el sistema crea la nueva OT, entonces la vincula automáticamente al perfil y bitácora de esa maquinaria específica en la base de datos.
 
-para [beneficio]. 
+## SIN-02: 
 
- 
+Como encargado de la panadería, quiero que el sistema me asigne automáticamente al técnico disponible al solicitar un servicio de emergencia, para recibir atención inmediata y minimizar el tiempo en la línea de producción cuando este detenida.
 
-Criterios de aceptación: 
-
-- CA1: ... 
-
-- CA2: ... 
-
- 
+Criterios de aceptación:
+* Dado que un horno industrial falla y requiere asistencia urgente, cuando el encargado envía la solicitud, entonces el sistema cruza automáticamente la especialidad requerida con la ubicación y disponibilidad de los técnicos en terreno.
+* Dado que hay un técnico calificado libre, cuando se procesa la solicitud, entonces el sistema le asigna el ticket automáticamente, bloquea ese espacio en su agenda y notifica al cliente el tiempo estimado de llegada.
+* Dado que todos los técnicos están ocupados, cuando el encargado intenta crear la solicitud, entonces el sistema la pone en una cola prioritariay le informa al cliente que está en lista de espera prioritaria.
 
 ## 3. Impacto en requisitos extrafuncionales 
 
- 
-
-Indicar si el cambio altera la prioridad de algún REF o introduce nuevos. 
-
-Trazar cambios de prioridad que motiven cambios en decisiones de arquitectura. 
-
- 
 
 | REF ID | Descripción                    | Prioridad anterior | Prioridad nueva | Cambio / Motivo           | 
 
