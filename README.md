@@ -40,9 +40,9 @@
 | US-07 |Solicitar servicio técnico para maquinaria        | [Issue #7](https://github.com/SICO-2026/SICO-FIS/issues/3) |
 | US-08 |Revisar estado y guía de uso de hornos        | [Issue #8](https://github.com/SICO-2026/SICO-FIS/issues/2) |
 | US-09 |Solicitar servicio técnico urgente        | [Issue #9](https://github.com/SICO-2026/SICO-FIS/issues/1) |
-| US-10 |        | [Issue #10](https://github.com/SICO-2026/SICO-FIS/issues/7) |
-| US-11 |        | [Issue #11](https://github.com/SICO-2026/SICO-FIS/issues/6) |
-| US-12 |        | [Issue #12](https://github.com/SICO-2026/SICO-FIS/issues/5) |
+| US-10 |Revision de refrigerador con problemas de enfriamiento y sobrecalentamiento        | [Issue #10](https://github.com/SICO-2026/SICO-FIS/issues/7) |
+| US-11 |Solicitud de revisión técnica de freidora con fallas múltiples        | [Issue #11](https://github.com/SICO-2026/SICO-FIS/issues/6) |
+| US-12 |Revision de sistema de pedidos con errores críticos        | [Issue #12](https://github.com/SICO-2026/SICO-FIS/issues/5) |
 
 ## Figma
 
