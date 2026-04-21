@@ -46,7 +46,7 @@
 
 ## Figma
 
-Ver en: https://glue-habit-23423275.figma.site/
+Ver en: (https://www.figma.com/proto/PnVdpinWa4A87yrm3EO9zI/SICO?node-id=0-1&t=B9ebn7E1LTdqadFC-1)
 
 ## Modelo del Dominio
 
