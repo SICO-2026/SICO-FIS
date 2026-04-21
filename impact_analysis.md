@@ -118,13 +118,13 @@ cambio de requerimientos y/o la repriorización de REF.]
 
 ### Decisión 1 
 
-- Decisión: [qué se decide] 
+- Decisión: Agregación de modulos asistenciales. 
 
-- Motivación: [por qué, referenciando REF repriorizado si aplica] 
+- Motivación: Mayor seguridad de los datos de los usuarios. 
 
-- Alternativas consideradas: [opciones evaluadas] 
-
-- Impacto: [en qué módulos o REF afecta] 
+- Alternativas consideradas: Se evaluaron cambios arquitectonicos de alto impacto.
+ 
+- Impacto: Se enfoca en la seguridad y optimizacion del sistema. 
 
  
 
@@ -147,3 +147,5 @@ cambio de requerimientos y/o la repriorización de REF.]
 Qué trade-offs se asumieron, especialmente ante cambios de prioridad en REF. 
 
 Qué se gana y qué se sacrifica con las decisiones tomadas.]
+
+
