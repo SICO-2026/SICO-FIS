@@ -28,17 +28,12 @@ Criterios de aceptación:
 ## 3. Impacto en requisitos extrafuncionales 
 
 
-| REF ID | Descripción                    | Prioridad anterior | Prioridad nueva | Cambio / Motivo           | 
-
-|--------|--------------------------------|--------------------|-----------------|---------------------------| 
-
-| SICO-02 | El sistema debe contar con autenticación avanzada de usuarios.  | Media | Alta | Mayor informacion de usuarios | 
-
-| SICO-06 | La interfaz debe ser intuitiva.  | Alta  | Media  | No será tan expedito para el usuario | 
-
-| SICO-07 | El sistema debe soportar un aumento exponencial de usuarios sin degradar su rendimiento. | Baja | Media | Optimizacion   | 
-
-| SICO-09 | El sistema no debe permitir perdidas criticas | Alta | Media | Eficiencia del sistema |
+| REF ID  | Descripción                                                                 | Prioridad Anterior | Prioridad Nueva | Cambio / Motivo                                   |
+|--------|------------------------------------------------------------------------------|--------------------|-----------------|--------------------------------------------------|
+| SICO-02 | El sistema debe contar con autenticación avanzada de usuarios.              | Media              | Alta            | Mayor información de usuarios                    |
+| SICO-06 | La interfaz debe ser intuitiva.                                             | Alta               | Media           | No será tan expedito para el usuario             |
+| SICO-07 | El sistema debe soportar un aumento exponencial de usuarios sin degradar su rendimiento. | Baja               | Media           | Optimización                                     |
+| SICO-09 | El sistema no debe permitir pérdidas críticas.                              | Alta               | Media           | Eficiencia del sistema                           |
 
  
 
