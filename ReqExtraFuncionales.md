@@ -7,7 +7,7 @@ Clasificación según ISO 25010 y tipo de restricción.
 | SICO-01 | Eficiencia/Rendimiento | Alta | El sistema debe procesar solicitudes en un tiempo máximo de 2 segundos. |
 | SICO-02 | Seguridad | Media | El sistema debe contar con autenticación básica de usuarios. |
 | SICO-03 | Disponibilidad | Alta | El sistema debe tener una disponibilidad mínima del 99%. |
-| SICO-04 | Mantenibilidad | Alta | El sistema debe permitir modificaciones sin afectar su funcionamiento general. |
+| SICO-04 | Mantenibilidad | Baja | El sistema debe permitir modificaciones sin afectar su funcionamiento general. |
 | SICO-05 | Portabilidad | Media | El sistema debe poder ejecutarse en entornos web sin requerir configuraciones complejas. |
 | SICO-06 | Usabilidad | Alta | La interfaz debe ser intuitiva y permitir su uso sin capacitación previa. |
 | SICO-07 | Escalabilidad | Baja | El sistema debe soportar un aumento moderado de usuarios sin degradar su rendimiento. |
