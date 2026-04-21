@@ -28,7 +28,21 @@
 
 +Telemetría de control: Monitoreo remoto en tiempo real de temperatura, vibración y consumo energético para detección de anomalías en hornos y/o líneas de producción.
 
-
+## Historias de usuarios
+| ID    | Nombre | Issue |
+|-------|--------|-------|
+| US-01 |Configurar alertas automáticas de mantenimiento preventivo        | [Issue #1](https://github.com/SICO-2026/SICO-FIS/issues/11) |
+| US-02 |Consultar guía de solución por código de error        | [Issue #2](https://github.com/SICO-2026/SICO-FIS/issues/10) |
+| US-03 |Cotizar y comprar maquinaria industrial        | [Issue #3](https://github.com/SICO-2026/SICO-FIS/issues/9) |
+| US-04 |        | [Issue #4](https://github.com/SICO-2026/SICO-FIS/issues/8) |
+| US-05 |        | [Issue #5](https://github.com/SICO-2026/SICO-FIS/issues/12) |
+| US-06 |        | [Issue #6](https://github.com/SICO-2026/SICO-FIS/issues/13) |
+| US-07 |        | [Issue #7](https://github.com/SICO-2026/SICO-FIS/issues/3) |
+| US-08 |        | [Issue #8](https://github.com/SICO-2026/SICO-FIS/issues/2) |
+| US-09 |        | [Issue #9](https://github.com/SICO-2026/SICO-FIS/issues/1) |
+| US-10 |        | [Issue #10](https://github.com/SICO-2026/SICO-FIS/issues/7) |
+| US-11 |        | [Issue #11](https://github.com/SICO-2026/SICO-FIS/issues/6) |
+| US-12 |        | [Issue #12](https://github.com/SICO-2026/SICO-FIS/issues/5) |
 ## Figma
 
 https://glue-habit-23423275.figma.site/
