@@ -111,27 +111,20 @@ SI: El cambio afectaria principalmente a la seguridad de los usuarios y del mism
 
  
 
-| REF ID | Prioridad nueva | Decisión de arquitectura que lo aborda         | 
-
-|--------|-----------------|------------------------------------------------| 
-
-| SICO-02 | Alta            | El sistema amerita mejor seguridad a la hora de recopilar informacion sobre el cliente  | 
-
-| SICO-06 | Media            | El sistema, ya no puede ser tan intuitivo por la complejidad del mismo          | 
-
-| SICO-07 | Media            | El sistema busca ahora una supervivencia extremas para mantenerse activo           |
+| REF ID  | Prioridad nueva | Decisión de arquitectura que lo aborda                                                                 |
+|---------|----------------|--------------------------------------------------------------------------------------------------------|
+| SICO-02 | Alta           | El sistema requiere mayor seguridad al recopilar información del cliente.                              |
+| SICO-06 | Media          | El sistema ya no puede ser tan intuitivo debido al aumento de su complejidad.                          |
+| SICO-07 | Media          | El sistema prioriza una alta disponibilidad para mantenerse activo en condiciones exigentes.           |
 
 ## 7. Impacto en módulos 
 
  
 
-| Módulo             | Tipo de impacto    | Responsabilidad actualizada        | Ofrece a otros (actualizado)   | 
-
-|--------------------|--------------------|------------------------------------|--------------------------------| 
-
-| Cotizaciones | modificado         | Se transforma en Órdenes de Trabajo y Cotizaciones, porque ya no solo genera PDFs: ahora también formaliza tickets, asocia costos, repuestos, cliente, técnico y servicio realizado.         | Órdenes de trabajo, cotizaciones y documentos formales      | 
-
-| Órdenes de Trabajo     | nuevo              | Centraliza la recepción de solicitudes, confirmación de servicios, asignación de técnicos y seguimiento del estado de cada intervención.                  | Tickets, estados de servicio, asignación técnica y trazabilidad                   | 
+| Módulo             | Tipo de impacto | Responsabilidad actualizada                                                                                                                                 | Ofrece a otros                                      |
+|--------------------|----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
+| Cotizaciones       | Modificado     | Se transforma en Órdenes de Trabajo y Cotizaciones; ya no solo genera PDFs, también formaliza tickets y asocia costos, repuestos, cliente, técnico y servicio. | Órdenes de trabajo, cotizaciones y documentos formales |
+| Órdenes de Trabajo | Nuevo          | Centraliza solicitudes, confirma servicios, asigna técnicos y gestiona el seguimiento del estado de cada intervención.                                    | Tickets, estados de servicio, asignación y trazabilidad |                | 
 
  
 
