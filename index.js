@@ -9,8 +9,11 @@ app.use(express.json());
 const swaggerSpec = swaggerJsdoc({
   definition: {
     openapi: '3.0.0',
-    info: { title: 'API Cursos', version: '1.0.0',
-            description: 'API para gestionar cursos academicos' }
+    info: { title: 'API Cursos', version: '1.0.0' },
+    servers: [
+      { url: 'https://cursos-api-x6la.onrender.com', description: 'Produccion' },
+      { url: 'http://localhost:3000',            description: 'Local' }
+    ]
   },
   apis: ['./index.js']
 });
