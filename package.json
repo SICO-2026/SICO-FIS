@@ -1,0 +1,26 @@
+{
+  "name": "sico-fis",
+  "version": "1.0.0",
+  "description": "## Somos Sico, empresa encargada de supervisión, control, gestión y mantenimiento de maquinaria industrial relacionada ambiente panadero.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SICO-2026/SICO-FIS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SICO-2026/SICO-FIS/issues"
+  },
+  "homepage": "https://github.com/SICO-2026/SICO-FIS#readme",
+  "dependencies": {
+    "better-sqlite3": "^12.10.0",
+    "express": "^5.2.1",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
+  }
+}
