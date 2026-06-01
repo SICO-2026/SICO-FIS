@@ -33,7 +33,7 @@
 |-------|--------|-------|
 | US-01 |Configurar alertas automáticas de mantenimiento preventivo        | [Issue #1](https://github.com/SICO-2026/SICO-FIS/issues/11) |
 | US-02 |Consultar guía de solución por código de error        | [Issue #2](https://github.com/SICO-2026/SICO-FIS/issues/10) |
-| US-03 |Cotizar y comprar maquinaria industrial        | [Issue #3](https://github.com/SICO-2026/SICO-FIS/issues/9) |
+| US-03 |Consultar y cotizar equipos industriales       | [Issue #3](https://github.com/SICO-2026/SICO-FIS/issues/9) |
 | US-04 |Consultar historial de mantenciones y reparaciones        | [Issue #4](https://github.com/SICO-2026/SICO-FIS/issues/8) |
 | US-05 |Programar mantenciones futuras de maquinaria       | [Issue #5](https://github.com/SICO-2026/SICO-FIS/issues/12) |
 | US-06 |Visualizar estado general de las máquinas       | [Issue #6](https://github.com/SICO-2026/SICO-FIS/issues/13) |
