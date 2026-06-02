@@ -1,0 +1,196 @@
+{
+  "clientName": "Thunder Client",
+  "collectionName": "Servicio Tecnico Panaderia",
+  "collectionId": "sico-fis-2026",
+  "dateExported": "2026-06-01",
+  "version": "1.2",
+  "folders": [
+    {
+      "id": "folder-equipos",
+      "name": "HU1 - Equipos y Cotización",
+      "containerId": ""
+    },
+    {
+      "id": "folder-mantenciones",
+      "name": "HU2 - Historial de Mantenciones",
+      "containerId": ""
+    }
+  ],
+  "requests": [
+    {
+      "id": "req-01",
+      "colId": "sico-fis-2026",
+      "containerId": "folder-equipos",
+      "name": "GET todos los equipos",
+      "url": "http://localhost:3000/equipos",
+      "method": "GET",
+      "headers": [],
+      "body": {
+        "type": "none",
+        "raw": ""
+      },
+      "tests": [],
+      "notes": "Lista todos los equipos con precio, disponibilidad y especificaciones. HU1."
+    },
+    {
+      "id": "req-02",
+      "colId": "sico-fis-2026",
+      "containerId": "folder-equipos",
+      "name": "GET equipo por ID",
+      "url": "http://localhost:3000/equipos/1",
+      "method": "GET",
+      "headers": [],
+      "body": {
+        "type": "none",
+        "raw": ""
+      },
+      "tests": [],
+      "notes": "Obtiene un equipo específico con todas sus especificaciones."
+    },
+    {
+      "id": "req-03",
+      "colId": "sico-fis-2026",
+      "containerId": "folder-equipos",
+      "name": "POST crear equipo",
+      "url": "http://localhost:3000/equipos",
+      "method": "POST",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"nombre\": \"Horno rotativo HR-500\",\n  \"tipo\": \"Horno\",\n  \"marca\": \"Rational\",\n  \"especificaciones\": \"Capacidad 20 bandejas, 400V, 15kW\",\n  \"precio\": 4500000,\n  \"disponible\": 1\n}"
+      },
+      "tests": [],
+      "notes": "Registra un nuevo equipo. Responde 201 con el equipo creado."
+    },
+    {
+      "id": "req-04",
+      "colId": "sico-fis-2026",
+      "containerId": "folder-equipos",
+      "name": "PUT actualizar equipo",
+      "url": "http://localhost:3000/equipos/1",
+      "method": "PUT",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"nombre\": \"Horno rotativo HR-500\",\n  \"tipo\": \"Horno\",\n  \"marca\": \"Rational\",\n  \"especificaciones\": \"Capacidad 20 bandejas, 400V, 15kW\",\n  \"precio\": 4800000,\n  \"disponible\": 1\n}"
+      },
+      "tests": [],
+      "notes": "Actualiza los datos de un equipo existente."
+    },
+    {
+      "id": "req-05",
+      "colId": "sico-fis-2026",
+      "containerId": "folder-equipos",
+      "name": "DELETE eliminar equipo",
+      "url": "http://localhost:3000/equipos/1",
+      "method": "DELETE",
+      "headers": [],
+      "body": {
+        "type": "none",
+        "raw": ""
+      },
+      "tests": [],
+      "notes": "Elimina un equipo por ID."
+    },
+    {
+      "id": "req-06",
+      "colId": "sico-fis-2026",
+      "containerId": "folder-equipos",
+      "name": "POST generar cotización",
+      "url": "http://localhost:3000/cotizacion",
+      "method": "POST",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"equipo_ids\": [2, 3]\n}"
+      },
+      "tests": [],
+      "notes": "Genera cotización con detalle de precios para los equipos seleccionados. Responde 200 con total."
+    },
+    {
+      "id": "req-07",
+      "colId": "sico-fis-2026",
+      "containerId": "folder-equipos",
+      "name": "POST cotización sin equipos válidos (error)",
+      "url": "http://localhost:3000/cotizacion",
+      "method": "POST",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"equipo_ids\": []\n}"
+      },
+      "tests": [],
+      "notes": "Caso de error: lista vacía. Debe responder 400 con mensaje de error."
+    },
+    {
+      "id": "req-08",
+      "colId": "sico-fis-2026",
+      "containerId": "folder-mantenciones",
+      "name": "POST registrar mantención",
+      "url": "http://localhost:3000/mantenciones",
+      "method": "POST",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"equipo_id\": 2,\n  \"tipo\": \"correctiva\",\n  \"descripcion\": \"Falla en resistencia de calefacción\",\n  \"fecha\": \"2025-05-10\",\n  \"tiempo_reparacion_horas\": 3.5\n}"
+      },
+      "tests": [],
+      "notes": "Registra una mantención para un equipo. Responde 201."
+    },
+    {
+      "id": "req-09",
+      "colId": "sico-fis-2026",
+      "containerId": "folder-mantenciones",
+      "name": "GET historial de mantenciones por equipo",
+      "url": "http://localhost:3000/mantenciones/equipo/2",
+      "method": "GET",
+      "headers": [],
+      "body": {
+        "type": "none",
+        "raw": ""
+      },
+      "tests": [],
+      "notes": "Obtiene el historial completo de mantenciones de una máquina específica. HU2."
+    },
+    {
+      "id": "req-10",
+      "colId": "sico-fis-2026",
+      "containerId": "folder-mantenciones",
+      "name": "GET historial equipo sin registros (caso límite)",
+      "url": "http://localhost:3000/mantenciones/equipo/3",
+      "method": "GET",
+      "headers": [],
+      "body": {
+        "type": "none",
+        "raw": ""
+      },
+      "tests": [],
+      "notes": "Caso límite: equipo sin mantenciones. Responde 200 indicando que no hay registros."
+    }
+  ]
+}
