@@ -1,0 +1,1 @@
+# SI-02 - Historial de Mantenciones\n\nAPI para consultar el historial de mantenciones y reparaciones de equipos industriales.\n\n## Endpoints\n- GET /mantenciones/equipo/:id - Historial por equipo\n- POST /mantenciones - Registrar mantención\n- GET /mantenciones - Listar todas las mantenciones
