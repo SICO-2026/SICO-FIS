@@ -6,9 +6,9 @@
 
 | Integrante | Rol | Items de la rúbrica a cargo |
 |-----------|-----------|-----------|
-| Ariel Miranda    | Scrum Master    | Historias de Usuario, Comprobacion General   |
-| Percival Leiva    | Product Owner    | Historias de Usuario, Diseño arquitectonico  |
-| Rafaella Diaz | Developer | Historias de Usuario, Mockups, Modelo de dominio |
+| Ariel Miranda    | Scrum Master    | Historias de Usuario, Comprobacion General, APLICACION DE LA API (PULL REQUEST, ETC)   |
+| Percival Leiva    | Product Owner    | Historias de Usuario, Diseño arquitectonico, MEJORAMIENTO DE HISTORIAS DE USUARIOS  |
+| Rafaella Diaz | Developer | Historias de Usuario, Mockups, Modelo de dominio, MEJORAMIENTO DE HISTORIAS DE USUARIOS |
 | Ivan Rodriguez | Developer | Historias de Usuario, Requisitos ExtraFuncionales |
 | David Bombal | Developer | Historias de Usuario |
 
