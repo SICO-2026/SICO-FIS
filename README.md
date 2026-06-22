@@ -71,12 +71,6 @@ Documento principal de diagramas: [`Diagramas.md`](Diagramas.md)
 
 ## Instalación y ejecución
 
-### 1. Clonar el repositorio
-
-```bash
-git clone https://github.com/SICO-2026/SICO-FIS.git
-cd SICO-FIS
-```
 ### Requisitos previos
 
 - Node.js 18 o superior
@@ -86,6 +80,13 @@ cd SICO-FIS
 
 El proyecto no requiere variables de entorno para ejecutarse en esta versión.
 La base de datos SQLite se crea y gestiona localmente mediante `db.js`.
+
+### 1. Clonar el repositorio
+
+```bash
+git clone https://github.com/SICO-2026/SICO-FIS.git
+cd SICO-FIS
+```
 
 ### 2. Instalar dependencias
 
