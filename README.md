@@ -175,7 +175,7 @@ Equipos de prueba:
 | -------------- | ------------------------------------ | --------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
 | Ariel Miranda  | Desarrollo backend / API REST        | Desarrollo de HU, endpoints y validación funcional  | Implementación y revisión de endpoints de equipos, cotización y mantenciones en `index.js`.                                   |
 | Percival Leiva | Base de datos y persistencia         | Desarrollo de HU y persistencia de datos            | Creación de tablas, conexión SQLite, datos iniciales y revisión del archivo `db.js`.                                          |
-| Rafaella Díaz  | Frontend, documentación y evidencias(QA) | README, pruebas, documentación y apoyo en frontend  | Organización del frontend, documentación de casos de prueba, evidencias de ejecución y revisión final de artefactos.          |
+| Rafaella Díaz  | Quality Assurance ) | 4.1 Casos de prueba, evidencias de ejecución y validación de la US-03 | Documentación de CasosDePrueba.md, ejecución manual de pruebas, recopilación de evidencias en Evidencias/pruebas/, validación de cotización válida, errores controlados y Swagger.  |
 | Ivan Rodríguez | Arquitecto        | Diagramas de análisis, diseño y componentes del diagrama                      | Apoyo en modelo de dominio, casos de uso, diagrama de estados, despliegue, componentes y secuencia.                           |
 | David Bombal   | Pruebas, deuda técnica y revisión    | Casos de prueba, deuda técnica y control de calidad | Apoyo en ejecución de pruebas manuales, registro de evidencias, revisión de `DeudaTecnica.md` y consistencia del repositorio. |
 
