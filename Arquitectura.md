@@ -1,75 +1,210 @@
-## Estilo Arquitectónico
+# Arquitectura del Sistema
 
-              
-<img width="196" height="122" alt="ssssss" src="https://github.com/user-attachments/assets/18b6f578-6da2-4906-bacb-1f717e9b1bd5" />
+## Proyecto
 
-**¿Porque este estilo?**
+**SICO-FIS – Sistema de Gestión de Equipos y Servicios Técnicos para Panadería**
 
-Este estilo porque nuestras prioridades críticas son la Recuperabilidad [SICO-09], la Disponibilidad [SICO-03] y el Rendimiento [SICO-01]
+---
 
-Al tratarse de un sistema para ambientes industriales y trabajo en terreno, necesitamos que la plataforma siga operando incluso si falla la red (alta disponibilidad, SICO-03). Usando este estilo, la aplicación puede realizar un "autoguardado" y registrar la información de las inspecciones. Al momento de cuando vuelva la conexión, esos eventos se sincronizan sin perder ningún dato crítico de la maquinaria (alta recuperabilidad SICO-09).
+## Estilo arquitectónico
 
-Por el lado del Rendimiento (SICO-01). Se recibe una telemetría constante ya sea de las vibraciones como tambien la temperatura de los hornos. Al manejar la telemetría como mensajes asíncronos, la interfaz principal queda liberada, asegurando que cualquier acción del usuario en la plataforma web se procese en menos de los 2 segundos exigidos.
+El sistema SICO-FIS utiliza un estilo arquitectónico **cliente-servidor**, organizado mediante una **API REST** y una separación simple por capas.
 
-| ID | TIPO | Descripcion | Porque ocupamos en este estilo |
-|-----------|-----------|-----------|-----------|
-| SICO-01 | Eficiencia/Rendimiento | El sistema debe procesar solicitudes en un tiempo máximo de 2 segundos. | Las tareas pesadas (como el cálculo masivo de telemetría) se emiten como eventos en segundo plano. Esto libera el hilo principal, asegurando que la interfaz de la web reaccione al instante para el usuario.|
-| SICO-03 | Disponibilidad | El sistema debe tener una disponibilidad mínima del 99%. | Si el servicio de notificaciones sufre una caída, el sistema central sigue funcionando. El bus de eventos retiene los mensajes hasta que el servicio vuelva a estar en línea, garantizando que la operación en terreno nunca se detenga. |
-| SICO-09 | Recuperabilidad | El sistema debe recuperar la información ante fallos sin pérdida de datos críticos. | La aplicación guarda las acciones de los tecnicos como eventos locales. Si un tecnico pierde la señal, al momento que detecta red nuevamente, la app transmite toda la ráfaga de eventos acumulados, asegurando que ningún dato de inspección se pierda. |
+La aplicación se compone de:
 
+* Un **frontend web** desarrollado con HTML, CSS y JavaScript.
+* Un **backend** desarrollado con Node.js y Express.
+* Una **base de datos local SQLite** administrada desde `db.js`.
+* Una **documentación de API** disponible mediante Swagger en `/docs`.
 
-**¿Que estamos sacrificando?**
+Este estilo permite separar la interfaz de usuario, la lógica del servidor y la persistencia de datos, facilitando la mantención del sistema y la comprensión de sus responsabilidades principales.
 
-Al irnos por este estilo, el principal costo que asumimos es trabajar con consistencia eventual en lugar de una consistencia fuerte. Esto significa que el sistema puede mostrar datos temporalmente desfasados. Aceptamos esta desincronización temporal porque, para nuestra operación, es preferible que una lectura de inventario esté atrasada por unos minutos, a que un técnico no pueda registrar una mantención crítica en un horno panadero debido a una caída de conexión con la base de datos central.
+---
 
-## **Diagrama de arquitectura**
+## Justificación del estilo arquitectónico
 
-<img width="1440" height="937" alt="Untitled Diagram(2)" src="https://github.com/user-attachments/assets/c7e40f9b-21f8-46cc-95a1-44e0f85a0a6b" />
+Se selecciona este estilo porque se ajusta al alcance actual del proyecto y a las funcionalidades implementadas en la Entrega 3.
 
+El sistema necesita permitir que una encargada de producción consulte equipos industriales, revise su disponibilidad, genere cotizaciones y consulte mantenciones desde una interfaz web. Para ello, la separación entre frontend, API REST y base de datos permite organizar el flujo de información de forma clara.
 
+| ID      | Atributo de calidad      | Descripción                                                                         | Justificación arquitectónica                                                                                                                                              |
+| ------- | ------------------------ | ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| SICO-01 | Eficiencia / Rendimiento | El sistema debe procesar solicitudes en un tiempo adecuado para el usuario.         | El uso de una API REST local con Express y SQLite permite responder rápidamente a operaciones simples como listar equipos, consultar mantenciones y generar cotizaciones. |
+| SICO-03 | Disponibilidad           | El sistema debe estar disponible durante la ejecución local de la aplicación.       | Al ejecutarse localmente con `npm start`, el frontend, backend y base de datos pueden operar en el mismo entorno sin depender de servicios externos.                      |
+| SICO-09 | Recuperabilidad          | El sistema debe mantener la información registrada ante reinicios de la aplicación. | La información se almacena en SQLite mediante el archivo `serviciotecnico.db`, lo que permite conservar equipos y mantenciones entre ejecuciones.                         |
 
-**Componentes principales**
+---
 
-3. Descomposición Modular
+## Sacrificios del estilo arquitectónico
 
-Módulo Sensores y Telemetría 
-- Responsabilidad: Capturar, procesar y emitir métricas físicas continuas (temperatura, vibraciones) directamente desde los hornos y amasadoras de la línea de producción.
-- Ofrece a otros módulos: Flujos de datos en tiempo real sobre el estado del hardware, emitidos como eventos como ejemplo: telemetria.actualizada, sensor.anomalia_detectada.
-- Depende de: Ninguno
+El principal sacrificio de esta arquitectura es que la implementación actual concentra varias responsabilidades en el archivo `index.js`, incluyendo configuración del servidor, rutas, validaciones, lógica de negocio y documentación Swagger.
 
-Módulo App de Mantenimiento 
-- Responsabilidad: Proveer la interfaz para que los técnicos registren las inspecciones en terreno, reporten fallas y declaren los repuestos utilizados, gestionando el autoguardado local cuando estos no tengan conexion a internet.
-- Ofrece a otros módulos: Registros de las acciones del técnico en terreno, estos emitidos como eventos al recuperar red.
-- Depende de: Módulo de Gestión de Maquinaria.
+Esto permite avanzar rápidamente en una entrega académica, pero puede dificultar la mantención si el sistema crece. Por esta razón, se reconoce como deuda técnica y se propone separar el backend en futuras iteraciones usando carpetas como `routes/`, `controllers/`, `services/` y `repositories/`.
 
-Módulo Gestión de Maquinaria e Inventario 
-- Responsabilidad: Administrar la base de datos maestra de los equipos registrados, perfiles técnicos, y mantener el control del stock de repuestos.
-- Ofrece a otros módulos: Validación de autenticidad de hardware, catálogos de precios para repuestos y eventos de inventario.
-- Depende de: Módulo App de Mantenimiento.
+Además, SQLite es adecuado para desarrollo, demostración y prototipos locales, pero no es la mejor opción para un sistema productivo multiusuario. Si SICO-FIS escalara a producción, sería recomendable evaluar una base de datos cliente-servidor como PostgreSQL o MySQL.
 
-Módulo Alertas y Notificaciones (Consumidor)
-- Responsabilidad: Monitorear el flujo de eventos buscando umbrales críticos para despachar avisos urgentes al personal técnico.
-- Ofrece a otros módulos: Un canal centralizado para la entrega de notificaciones (Email/SMS).
-- Depende de: Módulo Sensores y Módulo Gestión.
+---
 
-Módulo Cotizaciones (Consumidor)
-- Responsabilidad: Automatizar la creación de presupuestos formales , generando documentos en PDF con valores precisos.
-- Ofrece a otros módulos: Archivos PDF.
-- Depende de: Módulo App de Mantenimiento y Módulo Gestión de Maquinaria.
+## Diagrama de arquitectura
 
-Módulo Historial y Analytics (Consumidor)
-- Responsabilidad: Persistir una bitácora de todo lo que ocurre con cada maquinaria para auditorías y generar métricas de rendimiento.
-- Ofrece a otros módulos: Reportes de vida útil de las máquinas.
-- Depende de: Módulo Sensores y Módulo App.
+La arquitectura del sistema se encuentra representada en los diagramas de despliegue y componentes documentados en `Diagramas.md`.
 
+### Diagrama de despliegue con componentes
 
+![Diagrama de despliegue con componentes](Evidencias/diagramas/diagrama-despliegue-componentes.png)
 
-## ASR
+### Diagrama de componentes
 
-1: Trabajo en terreno -> Recuperabilidad.
+![Diagrama de componentes](Evidencias/diagramas/diagrama-componentes.png)
 
-El sistema debe almacenar localmente el 100% de los datos de inspección sin pérdida de información bajo condiciones de desconexión total a la red prolongada durante el trabajo en terreno.
+---
 
-2: Telemetria -> Rendimiento.
+## Componentes principales
 
-El sistema debe procesar alertas y despachar notificaciones de seguridad en menos de 2 segundos bajo un flujo de datos continuo proveniente de los sensores de la maquinaria industrial.
+### 1. Frontend SICO-FIS
+
+**Ubicación:** `public/index.html`, `public/css/styles.css`, `public/js/app.js`
+
+**Responsabilidad:**
+Proveer la interfaz web para que la encargada de producción pueda interactuar con el sistema.
+
+**Funciones principales:**
+
+* Mostrar el tablero general.
+* Listar equipos industriales.
+* Registrar, editar y eliminar equipos.
+* Generar cotizaciones.
+* Registrar mantenciones.
+* Consultar historial de mantenciones.
+* Mostrar mensajes de éxito o error.
+
+**Depende de:**
+
+* API REST expuesta por el backend Express.
+
+---
+
+### 2. Backend Express
+
+**Ubicación:** `index.js`
+
+**Responsabilidad:**
+Procesar las solicitudes HTTP recibidas desde el frontend y exponer los endpoints principales del sistema.
+
+**Funciones principales:**
+
+* Configurar el servidor Express.
+* Servir los archivos estáticos de `public/`.
+* Exponer endpoints para equipos.
+* Exponer endpoint para cotización.
+* Exponer endpoints para mantenciones.
+* Documentar la API mediante Swagger.
+* Validar entradas básicas.
+* Coordinar la comunicación con `db.js`.
+
+**Depende de:**
+
+* Módulo de base de datos `db.js`.
+* Librerías Node.js y Express.
+
+---
+
+### 3. Módulo de base de datos
+
+**Ubicación:** `db.js`
+
+**Responsabilidad:**
+Administrar la conexión con SQLite y crear las tablas necesarias para el funcionamiento del sistema.
+
+**Funciones principales:**
+
+* Crear la tabla `equipos`.
+* Crear la tabla `mantenciones`.
+* Conectar la aplicación con `serviciotecnico.db`.
+* Cargar datos iniciales si la base de datos está vacía.
+
+**Depende de:**
+
+* Librería `better-sqlite3`.
+* Archivo local `serviciotecnico.db`.
+
+---
+
+### 4. Base de datos SQLite
+
+**Ubicación:** `serviciotecnico.db`
+
+**Responsabilidad:**
+Persistir la información utilizada por el sistema.
+
+**Datos almacenados:**
+
+* Equipos industriales.
+* Mantenciones asociadas a equipos.
+
+**Observación:**
+El archivo `serviciotecnico.db` se genera localmente al ejecutar la aplicación. No es necesario subirlo al repositorio si se encuentra excluido mediante `.gitignore`.
+
+---
+
+### 5. Swagger UI
+
+**Ruta:** `/docs`
+
+**Responsabilidad:**
+Permitir la revisión y prueba de los endpoints disponibles en la API.
+
+**Funciones principales:**
+
+* Mostrar endpoints de equipos.
+* Mostrar endpoint de cotización.
+* Mostrar endpoints de mantenciones.
+* Facilitar pruebas manuales desde el navegador.
+
+---
+
+## Relaciones entre componentes
+
+| Origen          | Destino         | Relación                                                          |
+| --------------- | --------------- | ----------------------------------------------------------------- |
+| Frontend        | Backend Express | Envía solicitudes HTTP mediante `fetch()`.                        |
+| Backend Express | Módulo `db.js`  | Solicita consultas y operaciones sobre la base de datos.          |
+| Módulo `db.js`  | SQLite          | Ejecuta consultas SQL usando `better-sqlite3`.                    |
+| Swagger UI      | Backend Express | Documenta y permite probar los endpoints definidos en `index.js`. |
+
+---
+
+## ASR: Architectural Significant Requirements
+
+### ASR-01: Rendimiento en operaciones principales
+
+El sistema debe responder en un tiempo adecuado a operaciones frecuentes como listar equipos, consultar un equipo, registrar mantenciones y generar cotizaciones.
+
+**Decisión arquitectónica asociada:**
+Se utiliza una API REST local con Express y SQLite, lo que permite ejecutar consultas simples de forma rápida en el entorno de demostración.
+
+---
+
+### ASR-02: Persistencia de datos
+
+El sistema debe conservar los equipos y mantenciones registrados entre ejecuciones de la aplicación.
+
+**Decisión arquitectónica asociada:**
+Se utiliza SQLite como base de datos local mediante `better-sqlite3`, permitiendo persistir la información en el archivo `serviciotecnico.db`.
+
+---
+
+### ASR-03: Mantenibilidad del sistema
+
+El sistema debe ser comprensible y modificable para futuras iteraciones.
+
+**Decisión arquitectónica asociada:**
+Se separa el frontend en HTML, CSS y JavaScript. Además, se documenta como deuda técnica la necesidad de separar el backend en rutas, controladores, servicios y repositorios.
+
+---
+
+## Conclusión
+
+La arquitectura actual de SICO-FIS es adecuada para una entrega académica funcional, ya que permite demostrar una historia de usuario completa con frontend, backend y base de datos. El estilo cliente-servidor con API REST facilita la comunicación entre la interfaz web y el servidor Express, mientras que SQLite permite persistir la información de equipos y mantenciones de forma local.
+
+Como mejora futura, se recomienda modularizar el backend, automatizar pruebas y evaluar una base de datos cliente-servidor si el sistema pasa a un contexto productivo.

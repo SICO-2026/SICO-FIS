@@ -5,14 +5,16 @@ const swaggerJsdoc = require('swagger-jsdoc');
  
 const app = express();
 app.use(express.json());
+app.use(express.static('public'));
  
 const swaggerSpec = swaggerJsdoc({
   definition: {
     openapi: '3.0.0',
     info: { title: 'API Servicio Técnico Panadería', version: '1.0.0' },
-    servers: [
-      { url: 'https://cursos-api-x6la.onrender.com', description: 'Produccion' },
-      { url: 'http://localhost:3000',                 description: 'Local' }
+    
+  servers: [
+  { url: 'http://localhost:3000', description: 'Servidor local' }
+
     ]
   },
   apis: ['./index.js']
@@ -22,7 +24,7 @@ app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
  
 // ─────────────────────────────────────────────
 //  RECURSO 1: EQUIPOS + COTIZACIÓN
-//  HU1: "Como encargada de producción, quiero consultar y cotizar equipos industriales"
+//  HU3: "Como encargada de producción, quiero consultar y cotizar equipos industriales"
 // ─────────────────────────────────────────────
  
 /**
@@ -79,7 +81,7 @@ app.get('/equipos/:id', (req, res) => {
  *               nombre:          { type: string,  example: "Horno rotativo HR-500" }
  *               tipo:            { type: string,  example: "Horno" }
  *               marca:           { type: string,  example: "Rational" }
- *               especificaciones:{ type: string,  example: "Capacidad 20 bandejas, 400V, 15kW" }
+ *               especificaciones: { type: string,  example: "Capacidad 20 bandejas, 400V, 15kW" }
  *               precio:          { type: number,  example: 4500000 }
  *               disponible:      { type: integer, example: 1, description: "1 = disponible, 0 = no disponible" }
  *     responses:
@@ -118,7 +120,7 @@ app.post('/equipos', (req, res) => {
  *               nombre:          { type: string }
  *               tipo:            { type: string }
  *               marca:           { type: string }
- *               especificaciones:{ type: string }
+ *               especificaciones: { type: string }
  *               precio:          { type: number }
  *               disponible:      { type: integer }
  *     responses:
@@ -301,4 +303,5 @@ app.get('/mantenciones', (req, res) => {
   res.json(db.prepare('SELECT * FROM mantenciones ORDER BY fecha DESC').all());
 });
  
-app.listen(3000, () => console.log('API corriendo en http://localhost:3000'));
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`API corriendo en http://localhost:${PORT}`));

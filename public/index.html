@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SICO-FIS | Gestión de Equipos</title>
+  <link rel="stylesheet" href="./css/styles.css" />
+</head>
+<body>
+<div class="app">
+
+  <!-- ── Sidebar ── -->
+  <aside>
+    <div class="brand">
+      <h1>Tecnología industrial</h1>
+      <p>Gestión de equipos · SICO-FIS</p>
+    </div>
+
+    <nav class="nav" aria-label="Navegación principal">
+      <button data-section="dashboard">▦ Tablero</button>
+      <button data-section="equipos">◈ Mis equipos</button>
+      <button data-section="cotizacion">🛒 Cotización</button>
+      <button data-section="mantenciones">🔧 Mantenciones</button>
+      <button data-section="historial">↺ Historial</button>
+    </nav>
+
+    <div class="user-card">
+      <strong>Usuario demo</strong>
+      <span>Panadería Julia</span>
+    </div>
+  </aside>
+
+  <!-- ── Main ── -->
+  <main>
+    <header class="topbar">
+      <div>
+        <h2 id="page-title">Tablero de Control</h2>
+        <p id="page-subtitle">Vista general del estado de tus equipos</p>
+      </div>
+      <span class="pill" id="api-pill">● Conectando…</span>
+    </header>
+
+    <!-- Dashboard -->
+    <section id="dashboard" class="section">
+      <div class="grid stats">
+        <article class="card stat">
+          <div class="icon">✅</div>
+          <strong id="stat-activos">—</strong>
+          <span>Equipos activos</span>
+          <small>Equipos disponibles en la API</small>
+        </article>
+        <article class="card stat">
+          <div class="icon">⚠️</div>
+          <strong id="stat-alertas">—</strong>
+          <span>Equipos no disponibles</span>
+          <small>Requieren revisión</small>
+        </article>
+        <article class="card stat">
+          <div class="icon">🕒</div>
+          <strong id="stat-mantenciones">—</strong>
+          <span>Mantenciones registradas</span>
+          <small>Total en base de datos</small>
+        </article>
+        <article class="card stat">
+          <div class="icon">↗️</div>
+          <strong id="stat-promedio">—</strong>
+          <span>Tiempo promedio</span>
+          <small>Horas por mantención</small>
+        </article>
+      </div>
+
+      <article class="card panel">
+        <div class="panel-head">
+          <div>
+            <h3>Alertas activas</h3>
+            <p>Equipos que requieren atención.</p>
+          </div>
+          <button class="btn secondary" id="btn-refresh-dashboard">Actualizar</button>
+        </div>
+        <div id="alert-list-container" class="alert-list">
+          <div class="alert-row">
+            <span class="muted">Cargando alertas…</span>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- Equipos -->
+    <section id="equipos" class="section">
+      <article class="card panel">
+        <div class="panel-head">
+          <div>
+            <h3>Mis equipos</h3>
+            <p>Consulta, filtra, crea, actualiza y elimina equipos industriales.</p>
+          </div>
+          <button class="btn" id="btn-cargar-equipos">Cargar equipos</button>
+        </div>
+
+        <div class="toolbar">
+          <input id="filtro-texto" placeholder="Buscar por nombre, tipo o marca" />
+          <select id="filtro-tipo">
+            <option value="">Todos los tipos</option>
+          </select>
+          <select id="filtro-disponible">
+            <option value="">Todos</option>
+            <option value="1">Disponibles</option>
+            <option value="0">No disponibles</option>
+          </select>
+          <button class="btn secondary" id="btn-limpiar-filtros">Limpiar</button>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Sel.</th>
+                <th>ID</th>
+                <th>Equipo</th>
+                <th>Tipo</th>
+                <th>Marca</th>
+                <th>Precio</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="tabla-equipos">
+              <tr><td colspan="8" class="muted">Presiona "Cargar equipos".</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <article class="card panel">
+        <div class="panel-head">
+          <div>
+            <h3 id="form-title">Registrar nuevo equipo</h3>
+            <p>Conectado a <code>POST /equipos</code> y <code>PUT /equipos/:id</code>.</p>
+          </div>
+          <button class="btn secondary" id="btn-nuevo-equipo">Nuevo</button>
+        </div>
+
+        <form id="form-equipo" class="form-grid">
+          <input type="hidden" id="equipo-id" />
+
+          <div>
+            <label for="nombre">Nombre</label>
+            <input id="nombre" required placeholder="Horno rotativo HR-500" />
+          </div>
+          <div>
+            <label for="tipo">Tipo</label>
+            <input id="tipo" required placeholder="Horno" />
+          </div>
+          <div>
+            <label for="marca">Marca</label>
+            <input id="marca" required placeholder="Rational" />
+          </div>
+          <div>
+            <label for="precio">Precio</label>
+            <input id="precio" required type="number" min="0" placeholder="4500000" />
+          </div>
+          <div class="full">
+            <label for="especificaciones">Especificaciones</label>
+            <textarea id="especificaciones" required placeholder="Capacidad 20 bandejas, 400V, 15kW"></textarea>
+          </div>
+          <div>
+            <label for="disponible">Disponibilidad</label>
+            <select id="disponible">
+              <option value="1">Disponible</option>
+              <option value="0">No disponible</option>
+            </select>
+          </div>
+          <div class="align-end">
+            <button class="btn green" type="submit">Guardar equipo</button>
+          </div>
+        </form>
+      </article>
+    </section>
+
+    <!-- Cotización -->
+    <section id="cotizacion" class="section">
+      <div class="two-cols">
+        <article class="card panel">
+          <div class="panel-head">
+            <div>
+              <h3>Generar cotización</h3>
+              <p>Selecciona equipos desde "Mis equipos" o escribe IDs separados por coma.</p>
+            </div>
+          </div>
+
+          <div class="help">
+            Ejemplo: <strong>1,2,3</strong>. La API consultará los equipos y calculará el total.
+          </div>
+
+          <label for="cotizacion-ids">IDs de equipos</label>
+          <input id="cotizacion-ids" placeholder="Ejemplo: 1,2,3" />
+
+          <div class="btn-row">
+            <button class="btn" id="btn-generar-cotizacion">Generar cotización</button>
+            <button class="btn secondary" id="btn-usar-seleccionados">Usar seleccionados</button>
+          </div>
+        </article>
+
+        <article class="card panel">
+          <h3>Resultado</h3>
+          <p>Respuesta desde <code>POST /cotizacion</code>.</p>
+          <div id="resultado-cotizacion" class="result">Aquí aparecerá la cotización.</div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Mantenciones -->
+    <section id="mantenciones" class="section">
+      <article class="card panel">
+        <div class="panel-head">
+          <div>
+            <h3>Registrar mantención</h3>
+            <p>Conectado a <code>POST /mantenciones</code>.</p>
+          </div>
+        </div>
+
+        <form id="form-mantencion" class="form-grid">
+          <div>
+            <label for="mant-equipo-id">ID del equipo</label>
+            <input id="mant-equipo-id" type="number" required placeholder="2" />
+          </div>
+          <div>
+            <label for="mant-tipo">Tipo</label>
+            <select id="mant-tipo">
+              <option value="preventiva">Preventiva</option>
+              <option value="correctiva">Correctiva</option>
+            </select>
+          </div>
+          <div>
+            <label for="mant-fecha">Fecha</label>
+            <input id="mant-fecha" type="date" required />
+          </div>
+          <div>
+            <label for="mant-tiempo">Tiempo de reparación (horas)</label>
+            <input id="mant-tiempo" type="number" step="0.1" min="0" required placeholder="3.5" />
+          </div>
+          <div class="full">
+            <label for="mant-desc">Descripción</label>
+            <textarea id="mant-desc" required placeholder="Falla en resistencia de calefacción"></textarea>
+          </div>
+          <div class="full form-footer">
+            <button class="btn green" type="submit">Registrar mantención</button>
+          </div>
+        </form>
+      </article>
+    </section>
+
+    <!-- Historial -->
+    <section id="historial" class="section">
+      <article class="card panel">
+        <div class="panel-head">
+          <div>
+            <h3>Historial por equipo</h3>
+            <p>Conectado a <code>GET /mantenciones/equipo/:id</code>.</p>
+          </div>
+        </div>
+        <div class="toolbar-simple">
+          <input id="historial-equipo-id" type="number" placeholder="ID del equipo. Ejemplo: 2" />
+          <button class="btn" id="btn-consultar-historial">Consultar historial</button>
+        </div>
+        <div id="resultado-historial" class="result">Aquí aparecerá el historial del equipo.</div>
+      </article>
+
+      <article class="card panel">
+        <div class="panel-head">
+          <div>
+            <h3>Todas las mantenciones</h3>
+            <p>Conectado a <code>GET /mantenciones</code>.</p>
+          </div>
+          <button class="btn secondary" id="btn-cargar-mantenciones">Cargar todas</button>
+        </div>
+        <div id="resultado-mantenciones" class="result">Aquí aparecerán todas las mantenciones.</div>
+      </article>
+    </section>
+
+  </main>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="./js/app.js"></script>
+</body>
+</html>
