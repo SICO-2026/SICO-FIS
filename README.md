@@ -178,7 +178,8 @@ Equipos de prueba:
 | Percival Leiva | Technical Lead y Developer         | Desarrollo de HU y persistencia de datos            | Creación de tablas, conexión SQLite, datos iniciales y revisión del archivo `db.js`.                                          |
 | Rafaella Díaz  | Quality Assurance  | 4.1 Casos de prueba, evidencias de ejecución y validación de la US-03 | Documentación de CasosDePrueba.md, ejecución manual de pruebas, recopilación de evidencias en Evidencias/pruebas/, validación de cotización válida.  |
 | Ivan Rodríguez | Arquitecto        | Diagramas de análisis, diseño y componentes del diagrama                      | Apoyo en modelo de dominio, casos de uso, diagrama de estados, despliegue, componentes y secuencia.                           |
-| David Bombal   | Pruebas, deuda técnica y revisión    | Casos de prueba, deuda técnica y control de calidad | Apoyo en ejecución de pruebas manuales, registro de evidencias, revisión de `DeudaTecnica.md` y consistencia del repositorio. |
+| David Bombal   | Technical Lead y Developer  | Presentación del repositorio de código y el desarrollo por ramas | Identificación de oportunidades de mejora por code smells o deuda técnica.
+ |
 
 
 ---
