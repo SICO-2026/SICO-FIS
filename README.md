@@ -174,7 +174,7 @@ Equipos de prueba:
 
 | Integrante     | Rol en la entrega                    | Ítems de la rúbrica a cargo                         | Responsabilidades específicas                                                                                                 |
 | -------------- | ------------------------------------ | --------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| Ariel Miranda  | Desarrollo backend / API REST        | Desarrollo de HU, endpoints y validación funcional  | Implementación y revisión de endpoints de equipos, cotización y mantenciones en `index.js`.                                   |
+| Ariel Miranda  | Scrum Master       | Desarrollo de HU, endpoints y validación funcional  | Implementación y revisión de endpoints de equipos, cotización y mantenciones en `index.js`.                                   |
 | Percival Leiva | Technical Lead y Developer         | Desarrollo de HU y persistencia de datos            | Creación de tablas, conexión SQLite, datos iniciales y revisión del archivo `db.js`.                                          |
 | Rafaella Díaz  | Quality Assurance  | 4.1 Casos de prueba, evidencias de ejecución y validación de la US-03 | Documentación de CasosDePrueba.md, ejecución manual de pruebas, recopilación de evidencias en Evidencias/pruebas/, validación de cotización válida.  |
 | Ivan Rodríguez | Arquitecto        | Diagramas de análisis, diseño y componentes del diagrama                      | Apoyo en modelo de dominio, casos de uso, diagrama de estados, despliegue, componentes y secuencia.                           |
